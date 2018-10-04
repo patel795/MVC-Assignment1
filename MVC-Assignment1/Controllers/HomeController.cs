@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVC_Assignment1.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,23 +9,32 @@ namespace MVC_Assignment1.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ViewResult Index()
         {
             return View();
         }
 
-        public ActionResult About()
+        [HttpGet]
+        public ViewResult UserForm(string username)
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            User user = new User();
+            user.UserName = username;
+            return View(user);
         }
 
-        public ActionResult Contact()
+        [HttpPost]
+        public ViewResult UserForm(User user)
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            if (ModelState.IsValid)
+            {
+                // TODO: Email response to the party organizer
+                return View("FinalPage", user);
+            }
+            else
+            {
+                // there is a validation error
+                return View();
+            }
         }
     }
 }
