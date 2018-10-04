@@ -13,7 +13,7 @@ namespace MVC_Assignment1.Controllers
         public ViewResult Index(string name)
         {
             ViewBag.Name = name;
-            return View();//It returns the html format of the index page
+            return View();//It returns the html format of the index page 
         }
 
         //This function helps to open the second page and also fill the details using the url
